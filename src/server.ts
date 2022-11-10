@@ -1,5 +1,4 @@
 import express from 'express';
-import './data-source';
 
 const app = express();
 
