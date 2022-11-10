@@ -1,5 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const { TYPEORM_HOST, TYPEORM_PORT, TYPEORM_USERNAME, TYPEORM_PASSWORD, TYPEORM_DATABASE } = process.env;
 
@@ -15,4 +17,8 @@ export const AppDataSource = new DataSource({
     entities: [],
     migrations: [],
     subscribers: [],
-})
+}).initialize().then(() => {
+    console.log("Database connection established");
+}).catch((error) => {
+    console.error("Database connection failed", error);
+});
