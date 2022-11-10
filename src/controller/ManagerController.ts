@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
+import { ManagerDto } from "../dto/ManagerDto";
 import { ManagerService } from "../service/ManagerService";
 
 export class ManagerController {
   public async createManager(req: Request, res: Response) {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password }: ManagerDto = req.body;
 
     try {
       const managerService = new ManagerService();
