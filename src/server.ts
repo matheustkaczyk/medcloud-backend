@@ -1,9 +1,10 @@
 import express from 'express';
+import { ManagerController } from './controller/ManagerController';
 
 const app = express();
 
 app.use(express.json());
 
-app.get('/', (_req, res) => res.send('Hello World!'));
+app.post('/signup', new ManagerController().createManager);
 
 export default app;
