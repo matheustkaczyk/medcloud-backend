@@ -8,7 +8,7 @@ export class ManagerController {
 
     try {
       const managerService = new ManagerService();
-      const manager = await managerService.createManager(firstName, lastName, email, password);
+      const manager = await managerService.createManager({ firstName, lastName, email, password });
       res.status(201).json(manager);
     } catch (error) {
       res.status(400).json({ error: error.message });

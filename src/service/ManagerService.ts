@@ -1,8 +1,9 @@
 import { Manager } from '@prisma/client';
 import { prisma } from '../../prisma/client';
+import { ManagerDto } from '../dto/ManagerDto';
 
 export class ManagerService {
-  public async createManager(firstName, lastName, email, password): Promise<Manager | Error> {
+  public async createManager({ firstName, lastName, email, password }: ManagerDto): Promise<Manager | Error> {
     const manager = await prisma.manager.findUnique({
       where: {
         email: email,
