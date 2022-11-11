@@ -3,9 +3,13 @@ import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
 dotenv.config();
 
-type User = {
+type ManagerWithoutPassword = {
+  id: number;
+  name: string;
   email: string;
-  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
 }
 
 export class JwtAuth {
@@ -25,7 +29,7 @@ export class JwtAuth {
     }
   }
 
-  public static async generateToken(user: User): Promise<string> {
+  public static async generateToken(user: ManagerWithoutPassword): Promise<string> {
     return jwt.sign({ user }, process.env.JWT_SECRET as string, { expiresIn: 86400 });
   }
 }
