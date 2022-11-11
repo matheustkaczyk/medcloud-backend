@@ -26,4 +26,10 @@ export class PatientService {
 
     return newPatient;
   }
+
+  public async getAllPatients(): Promise<Patient[]> {
+    const patients = await prisma.patient.findMany();
+
+    return patients;
+  }
 }
