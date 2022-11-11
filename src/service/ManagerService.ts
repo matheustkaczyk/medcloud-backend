@@ -7,7 +7,8 @@ import md5 from 'md5';
 
 export class ManagerService {
   public async createManager({ firstName, lastName, email, password }: CreateManagerDto): Promise<Manager | Error> {
-    const manager = await this.getManagerByEmail(email);
+    const manager = await prisma.manager.findUnique({ where: { email } });
+    const hashedPassword = md5(password);
 
     if (manager) {
       throw new Error('Manager already exists');
@@ -17,7 +18,7 @@ export class ManagerService {
       data: {
         name: `${firstName} ${lastName}`,
         email: email,
-        password: password,
+        password: hashedPassword,
       }
     })
 
