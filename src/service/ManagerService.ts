@@ -51,4 +51,18 @@ export class ManagerService {
 
     return JwtAuth.generateToken(managerWithoutPassword);
   }
+
+  public async getManagerById(id: number): Promise<Manager | Error> {
+    const manager = await prisma.manager.findUnique({
+      where: {
+        id: id,
+      }
+    })
+
+    if (!manager) {
+      throw new Error('Manager does not exist');
+    }
+
+    return manager;
+  }
 }
