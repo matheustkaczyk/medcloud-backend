@@ -69,4 +69,24 @@ export class ManagerService {
   public async getManagers(): Promise<Manager[]> {
     return await prisma.manager.findMany();
   }
+
+  public async updateManager(id: number, { firstName, lastName, email, password }: CreateManagerDto): Promise<Manager | Error> {
+    const manager = await this.getManagerById(id) as Manager;
+    const hashedPassword = md5(password);
+
+    if (manager) {
+      const updatedManager = await prisma.manager.update({
+        where: {
+          id: id,
+        },
+        data: {
+          name: `${firstName} ${lastName}`,
+          email: email,
+          password: hashedPassword,
+        }
+      })
+
+      return updatedManager;
+    }
+  }
 }
