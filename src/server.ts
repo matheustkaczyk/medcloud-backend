@@ -10,5 +10,6 @@ app.post('/signup', new ManagerController().createManager);
 app.post('/signin', new ManagerController().authenticateManager);
 
 app.post('/patient', new PatientController().createPatient);
+app.put('/patient/:id', new PatientController().updatePatient);
 
 export default app;

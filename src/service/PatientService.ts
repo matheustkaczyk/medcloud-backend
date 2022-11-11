@@ -61,7 +61,7 @@ export class PatientService {
     return patient;
   }
 
-  public async updatePatient(id: string, { firstName, lastName, email, password, address }: CreatePatientDto): Promise<Patient> {
+  public async updatePatient(id: number, { firstName, lastName, email, password, address }: CreatePatientDto): Promise<Patient> {
     await this.getPatientById(Number(id));
 
     const patient = await prisma.patient.update({

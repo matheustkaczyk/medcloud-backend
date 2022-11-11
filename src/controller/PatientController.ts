@@ -20,4 +20,23 @@ export class PatientController {
       return res.status(400).json(error.message);
     }
   }
+
+  public async updatePatient(req: Request, res: Response): Promise<Response> {
+    const { firstName, lastName, email, password, address }: CreatePatientDto = req.body;
+    const { id } = req.params;
+
+    try {
+      const updatedPatient = await new PatientService().updatePatient(Number(id), {
+        firstName,
+        lastName,
+        email,
+        password,
+        address,
+      });
+
+      return res.json(updatedPatient);
+    } catch (error) {
+      return res.status(400).json(error.message);
+    }
+  }
 }
