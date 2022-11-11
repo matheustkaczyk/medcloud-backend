@@ -12,5 +12,6 @@ app.post('/signin', new ManagerController().authenticateManager);
 app.post('/patient', new PatientController().createPatient);
 app.put('/patient/:id', new PatientController().updatePatient);
 app.get('/patient', new PatientController().getAllPatients);
+app.get('/patient/:id', new PatientController().getPatientById);
 
 export default app;
