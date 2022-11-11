@@ -1,6 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
+type User = {
+  email: string;
+  password: string;
+}
+
 export class JwtAuth {
   public static async verifyTokenMiddleware(req: Request, res: Response, next: NextFunction) {
     const token = req.headers['x-access-token'] as string;
@@ -16,5 +21,9 @@ export class JwtAuth {
     } catch (error) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
+  }
+
+  public static async generateToken(user: User) {
+    return jwt.sign({ user }, process.env.JWT_SECRET as string, { expiresIn: 86400 });
   }
 }
