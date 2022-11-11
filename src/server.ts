@@ -12,9 +12,9 @@ app.post('/signup', new ManagerController().createManager);
 app.post('/signin', new ManagerController().authenticateManager);
 
 app.post('/patient', JwtAuth.verifyTokenMiddleware, new PatientController().createPatient);
-app.put('/patient/:id', new PatientController().updatePatient);
-app.get('/patient', new PatientController().getAllPatients);
-app.get('/patient/:id', new PatientController().getPatientById);
-app.delete('/patient/:id', new PatientController().deletePatientById);
+app.put('/patient/:id', JwtAuth.verifyTokenMiddleware, new PatientController().updatePatient);
+app.get('/patient', JwtAuth.verifyTokenMiddleware, new PatientController().getAllPatients);
+app.get('/patient/:id', JwtAuth.verifyTokenMiddleware, new PatientController().getPatientById);
+app.delete('/patient/:id', JwtAuth.verifyTokenMiddleware, new PatientController().deletePatientById);
 
 export default app;
