@@ -49,4 +49,16 @@ export class PatientController {
       return res.status(400).json(error.message);
     }
   }
+
+  public async getPatientById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    try {
+      const patient = await new PatientService().getPatientById(Number(id));
+
+      return res.json(patient);
+    } catch (error) {
+      return res.status(400).json(error.message);
+    }
+  }
 }
