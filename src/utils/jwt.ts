@@ -23,7 +23,7 @@ export class JwtAuth {
     }
   }
 
-  public static async generateToken(user: User) {
+  public static async generateToken(user: User): Promise<string> {
     return jwt.sign({ user }, process.env.JWT_SECRET as string, { expiresIn: 86400 });
   }
 }
