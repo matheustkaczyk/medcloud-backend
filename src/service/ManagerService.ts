@@ -1,9 +1,12 @@
 import { Manager } from '@prisma/client';
 import { prisma } from '../../prisma/client';
-import { ManagerDto } from '../dto/ManagerDto';
+import { AuthenticateManagerDto, CreateManagerDto } from '../dto/ManagerDto';
+import { JwtAuth } from '../utils/jwt';
+
+import md5 from 'md5';
 
 export class ManagerService {
-  public async createManager({ firstName, lastName, email, password }: ManagerDto): Promise<Manager | Error> {
+  public async createManager({ firstName, lastName, email, password }: CreateManagerDto): Promise<Manager | Error> {
     const manager = await this.getManagerByEmail(email);
 
     if (manager) {
@@ -33,5 +36,18 @@ export class ManagerService {
     }
 
     return manager;
+  }
+
+  public async authenticateManager({ email, password: pass }: AuthenticateManagerDto): Promise<string | Error> {
+    const manager = await this.getManagerByEmail(email) as Manager;
+    const hashedPassword = md5(pass);
+
+    if (manager.password !== hashedPassword) {
+      throw new Error('Invalid password');
+    }
+
+    const { password, ...managerWithoutPassword } = manager;
+
+    return JwtAuth.generateToken(managerWithoutPassword);
   }
 }
