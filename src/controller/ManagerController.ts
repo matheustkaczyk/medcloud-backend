@@ -21,7 +21,7 @@ export class ManagerController {
     try {
       const managerService = new ManagerService();
       const manager = await managerService.authenticateManager({ email, password });
-      res.status(200).json(manager);
+      res.status(200).json({ token: manager });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
