@@ -4,11 +4,7 @@ import { ManagerDto } from '../dto/ManagerDto';
 
 export class ManagerService {
   public async createManager({ firstName, lastName, email, password }: ManagerDto): Promise<Manager | Error> {
-    const manager = await prisma.manager.findUnique({
-      where: {
-        email: email,
-      }
-    })
+    const manager = await this.getManagerByEmail(email);
 
     if (manager) {
       throw new Error('Manager already exists');
