@@ -65,4 +65,8 @@ export class ManagerService {
 
     return manager;
   }
+
+  public async getManagers(): Promise<Manager[]> {
+    return await prisma.manager.findMany();
+  }
 }
