@@ -23,6 +23,19 @@ export class ManagerService {
     })
 
     return newManager;
+  }
 
+  public async getManagerByEmail(email: string): Promise<Manager | Error> {
+    const manager = await prisma.manager.findUnique({
+      where: {
+        email: email,
+      }
+    })
+
+    if (!manager) {
+      throw new Error('Manager does not exist');
+    }
+
+    return manager;
   }
 }
