@@ -61,4 +61,16 @@ export class PatientController {
       return res.status(400).json(error.message);
     }
   }
+
+  public async deletePatientById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    try {
+      const deletedPatient = await new PatientService().deletePatientById(Number(id));
+
+      return res.status(200).json(deletedPatient);
+    } catch (error) {
+      return res.status(400).json(error.message);
+    }
+  }
 }
