@@ -32,4 +32,21 @@ export class PatientService {
 
     return patients;
   }
+
+  public async updatePatient(id: string, { firstName, lastName, email, password, address }: CreatePatientDto): Promise<Patient> {
+    const patient = await prisma.patient.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        name: firstName,
+        last_name: lastName,
+        email,
+        password,
+        address,
+      },
+    });
+
+    return patient;
+  }
 }
