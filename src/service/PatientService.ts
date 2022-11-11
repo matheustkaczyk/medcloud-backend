@@ -79,4 +79,16 @@ export class PatientService {
 
     return patient;
   }
+
+  public async deletePatientById(id: number): Promise<void | Error> {
+    const patient = await this.getPatientById(Number(id));
+
+    if (patient) {
+      await prisma.patient.delete({
+        where: {
+          id: Number(id),
+        },
+      });
+    }
+  }
 }
