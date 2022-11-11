@@ -62,6 +62,8 @@ export class PatientService {
   }
 
   public async updatePatient(id: string, { firstName, lastName, email, password, address }: CreatePatientDto): Promise<Patient> {
+    await this.getPatientById(Number(id));
+
     const patient = await prisma.patient.update({
       where: {
         id: Number(id),
