@@ -89,4 +89,18 @@ export class ManagerService {
       return updatedManager;
     }
   }
+
+  public async deleteManager(id: number): Promise<Manager | Error> {
+    const manager = await this.getManagerById(id) as Manager;
+
+    if (manager) {
+      const deletedManager = await prisma.manager.delete({
+        where: {
+          id: id,
+        }
+      })
+
+      return deletedManager;
+    }
+  }
 }
