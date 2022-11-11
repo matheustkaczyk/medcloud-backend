@@ -33,6 +33,34 @@ export class PatientService {
     return patients;
   }
 
+  public async getPatientByEmail(email: string): Promise<Patient> {
+    const patient = await prisma.patient.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!patient) {
+      throw new Error('Patient not found');
+    }
+
+    return patient;
+  }
+
+  public async getPatientById(id: number): Promise<Patient> {
+    const patient = await prisma.patient.findUnique({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    if (!patient) {
+      throw new Error('Patient not found');
+    }
+
+    return patient;
+  }
+
   public async updatePatient(id: string, { firstName, lastName, email, password, address }: CreatePatientDto): Promise<Patient> {
     const patient = await prisma.patient.update({
       where: {
