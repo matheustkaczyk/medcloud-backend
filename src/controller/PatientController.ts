@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreatePatientDto } from "../dto/PatientDto";
+import { CreatePatientDto, UpdatePatientDto } from "../dto/PatientDto";
 import { PatientService } from "../service/PatientService";
 
 export class PatientController {
@@ -22,14 +22,13 @@ export class PatientController {
   }
 
   public async updatePatient(req: Request, res: Response): Promise<Response> {
-    const { firstName, lastName, email, password, address }: CreatePatientDto = req.body;
+    const { firstName, lastName, password, address }: UpdatePatientDto = req.body;
     const { id } = req.params;
 
     try {
       const updatedPatient = await new PatientService().updatePatient(Number(id), {
         firstName,
         lastName,
-        email,
         password,
         address,
       });

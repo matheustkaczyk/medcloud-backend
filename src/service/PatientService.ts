@@ -1,6 +1,6 @@
 import { Patient } from '@prisma/client';
 import { prisma } from '../../prisma/client';
-import { CreatePatientDto } from '../dto/PatientDto';
+import { CreatePatientDto, UpdatePatientDto } from '../dto/PatientDto';
 
 export class PatientService {
   public async createPatient({ firstName, lastName, email, password, address }: CreatePatientDto): Promise<Patient> {
@@ -61,7 +61,7 @@ export class PatientService {
     return patient;
   }
 
-  public async updatePatient(id: number, { firstName, lastName, email, password, address }: CreatePatientDto): Promise<Patient> {
+  public async updatePatient(id: number, { firstName, lastName, password, address }: UpdatePatientDto): Promise<Patient> {
     const findPatient = await this.getPatientById(Number(id));
 
     const patient = await prisma.patient.update({
