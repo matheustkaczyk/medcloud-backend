@@ -7,3 +7,10 @@ export const CreatePatientSchema = joi.object({
   password: joi.string().required(),
   address: joi.string().required()
 });
+
+export const UpdatePatientSchema = joi.object({
+  firstName: joi.string().required(),
+  lastName: joi.string().required(),
+  password: joi.string().required(),
+  address: joi.string().required()
+});
