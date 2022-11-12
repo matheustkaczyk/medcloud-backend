@@ -5,3 +5,10 @@ export interface CreatePatientDto {
   password: string;
   address: string;
 }
+
+export interface UpdatePatientDto {
+  firstName: string;
+  lastName: string;
+  password: string;
+  address: string;
+}
