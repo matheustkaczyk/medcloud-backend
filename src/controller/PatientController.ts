@@ -15,7 +15,7 @@ export class PatientController {
         address,
       });
 
-      return res.json(newPatient);
+      return res.status(201).json(newPatient);
     } catch (error) {
       return res.status(400).json(error.message);
     }
@@ -33,7 +33,7 @@ export class PatientController {
         address,
       });
 
-      return res.json(updatedPatient);
+      return res.status(200).json(updatedPatient);
     } catch (error) {
       return res.status(400).json(error.message);
     }
@@ -43,7 +43,7 @@ export class PatientController {
     try {
       const patients = await new PatientService().getAllPatients();
 
-      return res.json(patients);
+      return res.status(200).json(patients);
     } catch (error) {
       return res.status(400).json(error.message);
     }
@@ -55,7 +55,7 @@ export class PatientController {
     try {
       const patient = await new PatientService().getPatientById(Number(id));
 
-      return res.json(patient);
+      return res.status(200).json(patient);
     } catch (error) {
       return res.status(400).json(error.message);
     }
