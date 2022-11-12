@@ -62,7 +62,7 @@ export class PatientService {
   }
 
   public async updatePatient(id: number, { firstName, lastName, email, password, address }: CreatePatientDto): Promise<Patient> {
-    await this.getPatientById(Number(id));
+    const findPatient = await this.getPatientById(Number(id));
 
     const patient = await prisma.patient.update({
       where: {
@@ -71,7 +71,7 @@ export class PatientService {
       data: {
         name: firstName,
         last_name: lastName,
-        email,
+        email: findPatient.email,
         password,
         address,
       },
