@@ -26,4 +26,10 @@ export class ManagerController {
       res.status(400).json({ error: error.message });
     }
   }
+
+  public async validateManagersToken(req: Request, res: Response) {
+    const { userId } = req.body;
+
+    return res.status(200).json({ id: userId });
+  }
 }
