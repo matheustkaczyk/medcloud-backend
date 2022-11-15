@@ -22,7 +22,7 @@ export class JwtAuth {
 
     try {
       const decoded = await jwt.verify(token, process.env.JWT_SECRET as string);
-      req.body.userId = decoded.id;
+      req.body.userId = decoded.user.id;
       next();
     } catch (error) {
       return res.status(401).json({ error: 'Unauthorized' });
