@@ -28,8 +28,8 @@ export class ManagerController {
   }
 
   public async validateManagersToken(req: Request, res: Response) {
-    const { userId } = req.body;
+    const { user } = req.body;
 
-    return res.status(200).json({ id: userId });
+    return res.status(200).json({ user });
   }
 }
