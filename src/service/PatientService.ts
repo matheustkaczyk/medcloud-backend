@@ -3,7 +3,7 @@ import { prisma } from '../../prisma/client';
 import { CreatePatientDto, UpdatePatientDto } from '../dto/PatientDto';
 
 export class PatientService {
-  public async createPatient({ firstName, lastName, email, password, address }: CreatePatientDto): Promise<Patient> {
+  public async createPatient({ firstName, lastName, email, address }: CreatePatientDto): Promise<Patient> {
     const patientExists = await prisma.patient.findUnique({
       where: {
         email,
@@ -19,7 +19,6 @@ export class PatientService {
         name: firstName,
         last_name: lastName,
         email,
-        password,
         address,
       },
     });
@@ -61,7 +60,7 @@ export class PatientService {
     return patient;
   }
 
-  public async updatePatient(id: number, { firstName, lastName, password, address }: UpdatePatientDto): Promise<Patient> {
+  public async updatePatient(id: number, { firstName, lastName, address }: UpdatePatientDto): Promise<Patient> {
     const findPatient = await this.getPatientById(Number(id));
 
     const patient = await prisma.patient.update({
@@ -72,7 +71,6 @@ export class PatientService {
         name: firstName,
         last_name: lastName,
         email: findPatient.email,
-        password,
         address,
       },
     });

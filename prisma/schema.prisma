@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -27,7 +24,6 @@ model Patient {
   name      String
   last_name String
   email     String   @unique
-  password  String
   address   String
   createdAt DateTime @default(now())
 
