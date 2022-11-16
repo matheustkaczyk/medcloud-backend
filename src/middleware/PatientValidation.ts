@@ -3,9 +3,9 @@ import { CreatePatientSchema, UpdatePatientSchema } from "../utils/validationSch
 
 export class PatientValidation {
   public static createPatientMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    const { firstName, lastName, email, password, address } = req.body;
+    const { firstName, lastName, email, address } = req.body;
 
-    const { error } = CreatePatientSchema.validate({ firstName, lastName, email, password, address });
+    const { error } = CreatePatientSchema.validate({ firstName, lastName, email, address });
 
     if (error) {
       return res.status(400).json({ error: error.message });
@@ -15,9 +15,9 @@ export class PatientValidation {
   };
 
   public static updatePatientMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    const { firstName, lastName, password, address } = req.body;
+    const { firstName, lastName, address } = req.body;
 
-    const { error } = UpdatePatientSchema.validate({ firstName, lastName, password, address });
+    const { error } = UpdatePatientSchema.validate({ firstName, lastName, address });
 
     if (error) {
       return res.status(400).json({ error: error.message });

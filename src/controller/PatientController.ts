@@ -4,14 +4,13 @@ import { PatientService } from "../service/PatientService";
 
 export class PatientController {
   public async createPatient(req: Request, res: Response): Promise<Response> {
-    const { firstName, lastName, email, password, address }: CreatePatientDto = req.body;
+    const { firstName, lastName, email, address }: CreatePatientDto = req.body;
 
     try {
       const newPatient = await new PatientService().createPatient({
         firstName,
         lastName,
         email,
-        password,
         address,
       });
 
@@ -22,14 +21,13 @@ export class PatientController {
   }
 
   public async updatePatient(req: Request, res: Response): Promise<Response> {
-    const { firstName, lastName, password, address }: UpdatePatientDto = req.body;
+    const { firstName, lastName, address }: UpdatePatientDto = req.body;
     const { id } = req.params;
 
     try {
       const updatedPatient = await new PatientService().updatePatient(Number(id), {
         firstName,
         lastName,
-        password,
         address,
       });
 
