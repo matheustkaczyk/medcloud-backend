@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-require('dotenv').config();
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 type ManagerWithoutPassword = {
   id: number;
