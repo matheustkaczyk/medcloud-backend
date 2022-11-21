@@ -60,22 +60,27 @@ export class PatientService {
     return patient;
   }
 
-  public async updatePatient(id: number, { firstName, lastName, address }: UpdatePatientDto): Promise<Patient> {
+  public async updatePatient(id: number, { firstName, lastName, address, email }: UpdatePatientDto): Promise<Patient> {
     const findPatient = await this.getPatientById(Number(id));
 
-    const patient = await prisma.patient.update({
-      where: {
-        id: Number(id),
-      },
-      data: {
-        name: firstName,
-        last_name: lastName,
-        email: findPatient.email,
-        address,
-      },
-    });
+    if (!findPatient) {
+      throw new Error('Patient not found');
+    } else {
 
-    return patient;
+      const patient = await prisma.patient.update({
+        where: {
+          id: Number(id),
+        },
+        data: {
+          name: firstName,
+          last_name: lastName,
+          email: email,
+          address,
+        },
+      });
+
+      return patient;
+    }
   }
 
   public async deletePatientById(id: number): Promise<void | Error> {

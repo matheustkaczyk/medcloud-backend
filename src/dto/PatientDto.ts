@@ -9,4 +9,5 @@ export interface UpdatePatientDto {
   firstName: string;
   lastName: string;
   address: string;
+  email: string;
 }

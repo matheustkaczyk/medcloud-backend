@@ -21,7 +21,7 @@ export class PatientController {
   }
 
   public async updatePatient(req: Request, res: Response): Promise<Response> {
-    const { firstName, lastName, address }: UpdatePatientDto = req.body;
+    const { firstName, lastName, address, email }: UpdatePatientDto = req.body;
     const { id } = req.params;
 
     try {
@@ -29,6 +29,7 @@ export class PatientController {
         firstName,
         lastName,
         address,
+        email
       });
 
       return res.status(200).json(updatedPatient);
