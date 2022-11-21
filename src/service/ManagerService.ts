@@ -33,7 +33,7 @@ export class ManagerService {
     })
 
     if (!manager) {
-      throw new Error('Manager does not exist');
+      throw new Error('Wrong password or email');
     }
 
     return manager;
@@ -44,7 +44,7 @@ export class ManagerService {
     const hashedPassword = md5(pass);
 
     if (manager.password !== hashedPassword) {
-      throw new Error('Invalid password');
+      throw new Error('Wrong password or email');
     }
 
     const { password, ...managerWithoutPassword } = manager;
@@ -60,7 +60,7 @@ export class ManagerService {
     })
 
     if (!manager) {
-      throw new Error('Manager does not exist');
+      throw new Error('Wrong password or email');
     }
 
     return manager;
