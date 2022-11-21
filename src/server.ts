@@ -33,8 +33,8 @@ app.get('/patient/:id', JwtAuth.verifyTokenMiddleware, new PatientController().g
 app.delete('/patient/:id', JwtAuth.verifyTokenMiddleware, new PatientController().deletePatientById);
 
 const options = {
-  key: fs.readFileSync(path.join(__dirname, '../certs/key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, '../certs/cert.pem'))
+  key: fs.readFileSync(path.join(__dirname, './certs/key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, './certs/cert.pem'))
 }
 
 const httpsServer = https.createServer(options, app);
