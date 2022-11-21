@@ -22,7 +22,6 @@ const corsOptions = {
 const httpsServer = https.createServer({
   key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
   cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
-  ca: fs.readFileSync(path.join(__dirname, 'certs', 'ca.pem'))
 }, app);
 
 app.use(cors(corsOptions));
