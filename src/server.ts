@@ -1,4 +1,7 @@
 import express from 'express';
+import https from 'https'
+import fs from 'fs';
+import path from 'path';
 import cors from 'cors';
 
 import { JwtAuth } from './utils/jwt';
@@ -29,4 +32,11 @@ app.get('/patient', JwtAuth.verifyTokenMiddleware, new PatientController().getAl
 app.get('/patient/:id', JwtAuth.verifyTokenMiddleware, new PatientController().getPatientById);
 app.delete('/patient/:id', JwtAuth.verifyTokenMiddleware, new PatientController().deletePatientById);
 
-export default app;
+const options = {
+  key: fs.readFileSync(path.join(__dirname, '../certs/key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, '../certs/cert.pem'))
+}
+
+const httpsServer = https.createServer(options, app);
+
+export default httpsServer;
