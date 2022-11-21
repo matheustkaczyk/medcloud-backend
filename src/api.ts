@@ -1,5 +1,5 @@
-import httpsServer from './server';
-import * as dotenv from 'dotenv';
+import app from './server';
+import dotenv from 'dotenv';
 dotenv.config();
 
-httpsServer.listen(process.env.PORT || 3000, () => console.log('Example app listening on port 3000!'));
+app.listen(process.env.PORT || 3000, () => console.log('Example app listening on port 3000!'));
