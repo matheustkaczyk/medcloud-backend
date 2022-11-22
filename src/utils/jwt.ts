@@ -15,7 +15,7 @@ type ManagerWithoutPassword = {
 
 export class JwtAuth {
   public static async verifyTokenMiddleware(req: Request, res: Response, next: NextFunction) {
-    const token = req.headers['Authorization'] as string;
+    const token = req.headers['authorization'] as string;
 
     if (!token) {
       return res.status(401).json({ message: 'No token provided' });
