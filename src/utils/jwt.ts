@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import * as dotenv from 'dotenv'
+import { Manager } from "@prisma/client";
 dotenv.config()
 
 type ManagerWithoutPassword = {
@@ -14,11 +15,15 @@ type ManagerWithoutPassword = {
 
 export class JwtAuth {
   public static async verifyTokenMiddleware(req: Request, res: Response, next: NextFunction) {
-    const token = req.headers['Authorization'] as string || req.headers['authorization'] as string;
+    const token = req.headers['Authorization'] as string;
+
+    if (!token) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
 
     try {
-      const decoded = await jwt.verify(token, process.env.JWT_SECRET as string);
-      req.body.user = decoded.user;
+      const decoded = await jwt.verify(token, process.env.JWT_SECRET as string) as Manager;
+      req.body.user = decoded as JwtPayload;
       next();
     } catch (error) {
       return res.status(401).json({ error: 'Unauthorized' });

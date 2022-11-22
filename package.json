@@ -12,6 +12,7 @@
    "keywords": [],
    "description": "",
    "devDependencies": {
+      "@types/jsonwebtoken": "^8.5.9",
       "@types/node": "^16.11.10",
       "prisma": "^4.6.1",
       "ts-node": "10.7.0",
