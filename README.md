@@ -10,7 +10,7 @@
 
 ##### Bibliotecas:
 
-- [Nest.js](https://docs.nestjs.com/) v^9.0.0 - Framework Node;
+- [Express.js](https://expressjs.com/) v^4.18.2 - Framework Node;
 - [TypeScript](https://www.npmjs.com/package/typescript) v^4.3.5 - Superset para Javascript;
 - [dotenv](https://www.npmjs.com/package/dotenv) v^16.0.1  - Pacote para configuração de variáveis de ambiente;
 - [prisma](https://www.prisma.io) v^4.6.1 - Ferramente para trabalhar com banco de dados relacionais mais fácilmente;
