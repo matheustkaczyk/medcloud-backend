@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import * as dotenv from 'dotenv'
-import { Manager } from "@prisma/client";
 dotenv.config()
 
 type ManagerWithoutPassword = {
