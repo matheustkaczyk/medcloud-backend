@@ -22,8 +22,9 @@ export class JwtAuth {
     }
 
     try {
-      const decoded = await jwt.verify(token, process.env.JWT_SECRET as string) as Manager;
-      req.body.user = decoded as JwtPayload;
+      const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+
+      req.body.user = decoded;
       next();
     } catch (error) {
       return res.status(401).json({ error: 'Unauthorized' });
