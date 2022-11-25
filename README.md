@@ -41,17 +41,19 @@ Para rodar esse projeto é necessário ter instalado em sua máquina o runtime N
 
 2. Entre na pasta do projeto digitando o comando **`cd medcloud-backend`**
 
-3. Na raiz do projeto, crie um arquivo chamado .env para configurar as variáveis de ambiente necessárias:
+3. Instale as dependências com o comando *`npm install`*
+
+4. Na raiz do projeto, crie um arquivo chamado .env para configurar as variáveis de ambiente necessárias:
     ```
       DATABASE_URL="URL DO DB"
 
       JWT_SECRET="SEGREDO JWT"
     ```
 
-4. Para rodar as migration e criar a tabela no bancos de dados, rode o comando:
+5. Para rodar as migration e criar a tabela no bancos de dados, rode o comando:
 *`npx prisma migrate dev --name init`*
 
-5. Para iniciar o projeto, rode o comando:
+6. Para iniciar o projeto, rode o comando:
 *`npm run dev`*
 
 ## Contexto
